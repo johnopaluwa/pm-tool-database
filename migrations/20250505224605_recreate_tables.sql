@@ -128,7 +128,6 @@ CREATE TABLE public.organizations (
 CREATE TABLE public.workflows (
     id uuid DEFAULT uuid_generate_v4() NOT NULL,
     name text NOT NULL,
-    organization_id uuid,
     created_at timestamp with time zone DEFAULT now(),
     updated_at timestamp with time zone DEFAULT now(),
     description text
@@ -140,7 +139,6 @@ CREATE TABLE public.custom_field_definitions (
     type text NOT NULL,
     entity_type text NOT NULL,
     options jsonb,
-    organization_id uuid NOT NULL,
     created_at timestamp with time zone DEFAULT now() NOT NULL,
     updated_at timestamp with time zone DEFAULT now() NOT NULL
 );
@@ -201,6 +199,3 @@ ALTER TABLE ONLY public.tasks
 
 ALTER TABLE ONLY public.projects
     ADD CONSTRAINT projects_workflow_id_fkey FOREIGN KEY (workflow_id) REFERENCES public.workflows(id);
-
-ALTER TABLE ONLY public.workflows
-    ADD CONSTRAINT workflows_organization_id_fkey FOREIGN KEY (organization_id) REFERENCES public.organizations(id);
