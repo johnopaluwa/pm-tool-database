@@ -54,7 +54,8 @@ CREATE TABLE public.reports (
     prediction_severity_distribution jsonb,
     average_estimated_time numeric,
     top_keywords text[],
-    tech_stack_list text[]
+    tech_stack_list text[],
+    total_estimated_time numeric
 );
 
 CREATE TABLE public.projects (
